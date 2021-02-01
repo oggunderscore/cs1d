@@ -112,13 +112,13 @@ int *contents_of(const struct Node *root)
     return dynamicArray;                            // return the entire array
 }
 
-void treeToList(struct Node *root, struct Node **arr, int *index)
+void treeToList(const struct Node *root, struct Node **arr, int *index)
 {
     if (root != NULL)
     {
 
         treeToList(root->left, arr, index); // Left side iteration
-        arr[*index] = root;                 // Current node assignment
+        arr[*index] = (struct Node *)root;  // Current node assignment
         //printf("Setting [%d] = %d\n", *index, root->value);
         (*index)++;                          // Increment count
         treeToList(root->right, arr, index); // Right side iteration
