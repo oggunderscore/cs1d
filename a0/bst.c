@@ -112,13 +112,13 @@ int *contents_of(const struct Node *root)
     return dynamicArray;                            // return the entire array
 }
 
-void treeToList(const struct Node *root, struct Node *arr, int *index)
+void treeToList(struct Node *root, struct Node **arr, int *index)
 {
     if (root != NULL)
     {
 
         treeToList(root->left, arr, index); // Left side iteration
-        arr[*index] = *root;                // Current node assignment
+        arr[*index] = root;                 // Current node assignment
         //printf("Setting [%d] = %d\n", *index, root->value);
         (*index)++;                          // Increment count
         treeToList(root->right, arr, index); // Right side iteration
@@ -128,7 +128,7 @@ void treeToList(const struct Node *root, struct Node *arr, int *index)
 const struct Node *second_min_in(const struct Node *root)
 {
 
-    struct Node *dynamicArray = NULL; // Create an empty dynamic array
+    struct Node **dynamicArray = NULL; // Create an empty dynamic array
     int arraySize = 0;
     int i = 0;        // Index
     int *iPtr = &i;   // Index Ptr
@@ -136,12 +136,12 @@ const struct Node *second_min_in(const struct Node *root)
     {
         return NULL;
     }
-    arraySize = size_of(root);                              // Size of tree
-    dynamicArray = malloc(sizeof(struct Node) * arraySize); // Dynamically allocated for Size of Node * Size of Tree
-    treeToList(root, dynamicArray, iPtr);                   // Convert the tree into a array of nodes
+    arraySize = size_of(root);                                // Size of tree
+    dynamicArray = malloc(sizeof(struct Node *) * arraySize); // Dynamically allocated for Size of Node * Size of Tree
+    treeToList(root, dynamicArray, iPtr);                     // Convert the tree into a array of nodes
 
-    struct Node *returnNode = malloc(sizeof(struct Node));
-    *returnNode = dynamicArray[1];
+    struct Node *returnNode = dynamicArray[1];
+    //*returnNode = dynamicArray[1];
     free(dynamicArray);
     return returnNode; // return 2nd element.
     /* // Broken algorithm
