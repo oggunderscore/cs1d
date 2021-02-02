@@ -142,45 +142,6 @@ const struct Node *second_min_in(const struct Node *root)
     treeToList(root, dynamicArray, iPtr);                     // Convert the tree into a array of nodes
 
     struct Node *returnNode = dynamicArray[1];
-    //*returnNode = dynamicArray[1];
     free(dynamicArray);
     return returnNode; // return 2nd element.
-    /* // Broken algorithm
-    const struct Node *current = root;
-    const struct Node *prev = current;
-
-    bool found = false;
-
-    while (found != true)
-    {
-        if (root == NULL)
-        {
-            return NULL;
-        }
-        else
-        {
-
-            if (current->left == NULL)
-            {
-                if (root == current)
-                {
-                    current = current->right;
-                }
-                else
-                {
-                    //printf("FOUND 2nd MIN: %d", current->value);
-                    return prev;
-                }
-            }
-            else
-            {
-                //printf("Current: %d", current->value);
-                //printf("LEFT: %d", current->left->value);
-                prev = current;
-                current = current->left;
-            }
-        }
-    }
-    return NULL;
-    */
 }
