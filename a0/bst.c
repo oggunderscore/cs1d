@@ -34,6 +34,7 @@ void insert_into(struct Node **root, int value)
             trailCurrent = current;
             if (current->value == value) // Dupe case
             {
+                printf("ERROR: Dupe detected! Ignoring.\n");
                 free(newNode); // Free the memory!
                 return;
             }
